@@ -13,7 +13,7 @@ citation = {'ref': u"Agnieszka S. Juncker, Hanni Willenbrock, "
 
 __DEBUG__ = False
 
-import sys, os, time, json, re, urllib2
+import sys, os, time, json, re, urllib
 from suds.client import Client
 from suds.bindings import binding
 import logging
@@ -85,7 +85,7 @@ def annotate(params, proteins, \
 
             # workaround: removes any non-alphanumeric character (except '_') and adds
             # a unique number to the start to ensure every id is unique after mangling
-            newseqid = `seqcount` + re.sub(r'[^\w]', "", seqid)
+            newseqid = repr(seqcount) + re.sub(r'[^\w]', "", seqid)
             seqcount += 1
             lipop_seq_id_mapping[newseqid] = seqid
             seq.id = newseqid
@@ -96,8 +96,8 @@ def annotate(params, proteins, \
             sys.stderr.write(".")
         try:
             response = client.service.runService(request)
-        except urllib2.URLError as e:
-            log_stderr("ERROR LipoP(web) failed: '%s'" % `e.reason`)
+        except urllib.error.URLError as e:
+            log_stderr("ERROR LipoP(web) failed: '%s'" % repr(e.reason))
             return proteins
 
         sys.stderr.write("\n")

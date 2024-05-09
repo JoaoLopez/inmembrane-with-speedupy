@@ -11,7 +11,8 @@ citation = {'ref': u"Rose, R.W., T. Brüser,. J. C. Kissinger, and M. "
 
 __DEBUG__ = False
 
-import sys, os, time, StringIO
+import sys, os, time
+from io import StringIO
 
 import twill
 from twill.commands import find, formfile, follow, fv, go, show, \

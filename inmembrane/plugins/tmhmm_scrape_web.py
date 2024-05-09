@@ -10,8 +10,8 @@ citation = {'ref': u"Anders Krogh, Björn Larsson, Gunnar von Heijne and Erik "
 __DEBUG__ = False
 
 import sys, os, time
-from StringIO import StringIO
-from BeautifulSoup import BeautifulSoup
+from io import StringIO
+from bs4 import BeautifulSoup
 import requests
 
 try:

@@ -9,12 +9,13 @@ citation = {'ref': u"﻿Berven FS, Flikka K, Jensen HB, Eidhammer I (2004) "
             'name': "BOMP"
             }
 
-import sys, os, time, StringIO
+import sys, os, time
+from io import StringIO
 
 import twill
 from twill.commands import find, formfile, follow, fv, go, show, \
     showforms, showlinks, submit, agent
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 import inmembrane
 from inmembrane.helpers import log_stderr, parse_fasta_header

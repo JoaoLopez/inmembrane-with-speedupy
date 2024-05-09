@@ -1,0 +1,8 @@
+beautifulsoup4
+bs4
+cssselect
+lxml
+requests>=2.0.0
+semantic_version
+suds>=0.4
+twill==2.0

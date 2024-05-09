@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
         params = inmembrane.get_params()
         if ('fasta' not in params or not params['fasta']) and not args:
-            print description
+            print(description)
             parser.print_help()
             sys.exit(1)
         if 'fasta' not in params or not params['fasta']:

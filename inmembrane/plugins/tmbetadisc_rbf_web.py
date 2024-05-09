@@ -10,9 +10,11 @@ citation = {'ref': "Ou Y-YY, Gromiha MMM, Chen S-AA, Suwa M (2008) "
 
 __DEBUG__ = False
 
-import sys, os, time, StringIO
+import sys, os, time
+from io import StringIO
+
 import requests
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 from inmembrane.helpers import log_stderr, parse_fasta_header, dict_get
 
 

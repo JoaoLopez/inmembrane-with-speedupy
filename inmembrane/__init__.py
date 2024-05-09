@@ -1,9 +1,16 @@
 __version__ = "0.95.0"  # Must be a semantic version number
-import helpers
 
 import os, shutil
 
 module_dir = os.path.abspath(os.path.dirname(__file__))
+
+
+import sys
+sys.path.append(module_dir)
+
+
+import helpers
+
 
 default_params_str = """{
   'fasta': '',
@@ -111,8 +118,9 @@ def import_protocol_python(params):
         raise IOError("Couldn't find protcols/" + protocol_py)
     return 'import inmembrane.protocols.%s as protocol' % (params['protocol'])
 
-
+from inmembrane.plugins import *
 def process(params):
+    import importlib
     """
     Main program loop. Triggers the 'protocol' found in the params
     to annotate all proteins give the list of annotations needed by
@@ -120,10 +128,11 @@ def process(params):
     """
     from helpers import dict_get, create_proteins_dict, log_stdout, log_stderr
     # will load all plugins in the plugins/ directory
-    from inmembrane.plugins import *
-
+    
     # initializations
-    exec (import_protocol_python(params))
+    #exec (import_protocol_python(params))
+    protocol = importlib.import_module('inmembrane.protocols.%s' % (params['protocol']))
+
     init_output_dir(params)
     seqids, proteins = create_proteins_dict(params['fasta'])
 

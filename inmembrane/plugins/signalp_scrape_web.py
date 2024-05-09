@@ -10,8 +10,8 @@ citation = {'ref': u"Petersen TN, Brunak S, von Heijne G, Nielsen H. "
 __DEBUG__ = False
 
 import sys, os, time
-from StringIO import StringIO
-from BeautifulSoup import BeautifulSoup
+from io import StringIO
+from bs4 import BeautifulSoup
 import requests
 
 try:
@@ -34,7 +34,7 @@ def annotate(params, proteins, batchsize=2000, force=False):
     so now we use this.
     """
 
-    baseurl = "http://www.cbs.dtu.dk"
+    baseurl = "https://www.cbs.dtu.dk"
     url = baseurl + "/cgi-bin/webface2.fcgi"
 
     # grab the cached results if present
@@ -52,7 +52,7 @@ def annotate(params, proteins, batchsize=2000, force=False):
 
     proteins, id_mapping = generate_safe_seqids(proteins)
 
-    seqids = proteins.keys()
+    seqids = list(proteins.keys())
     allresultpages = ""
     while seqids:
         seqid_batch = seqids[0:batchsize]
@@ -85,7 +85,7 @@ def annotate(params, proteins, batchsize=2000, force=False):
         headers = {"User-Agent":
                        "python-requests/%s (inmembrane/%s)" %
                        (requests.__version__, inmembrane.__version__)}
-        r_post = requests.post(url, data=payload, files=files, headers=headers)
+        r_post = requests.post(url, data=payload, files=files, headers=headers, verify=False)
 
         if __DEBUG__:
             log_stderr(r_post.text)

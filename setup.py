@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 PACKAGE = "inmembrane"
 DESCRIPTION = "A bioinformatic pipeline for proteome annotation \
@@ -32,14 +32,14 @@ setup(
     # README, examples & docs are included via MANIFEST.in
     license='BSD',
     long_description=open('README.rst', 'rt').read(),
-    install_requires=["BeautifulSoup >= 3.2.1",
+    install_requires=["beautifulsoup4",
                       "bs4",
                       "cssselect",
                       "lxml",
                       "requests >= 2.0.0",
                       "semantic_version",
                       "suds >= 0.4",
-                      "twill == 0.9.1",
+                      "twill == 2.0",
                       ] + extra_requires,
     classifiers=[
         "Development Status :: 5 - Production/Stable",

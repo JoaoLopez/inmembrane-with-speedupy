@@ -86,7 +86,7 @@ def log_stdout(s, width=76):
     """
     if LOG_SILENT:
         return
-    print s
+    print(s)
 
 
 def parse_fasta_header(header):
@@ -158,13 +158,13 @@ def print_proteins(proteins):
     Prints out the proteins dictionary in a formatted
     manner that is also Python-eval compatible.
     """
-    print "{"
+    print("{")
     for seqid in proteins:
-        print "  '%s': {" % seqid
+        print("  '%s': {" % seqid)
         for key, value in proteins[seqid].items():
-            print "    '%s': %s, " % (key, repr(value))
-        print "  },"
-    print "}"
+            print("    '%s': %s, " % (key, repr(value)))
+        print("  },")
+    print("}")
     # Standard Library alternative
     # import pprint
     # pp = pprint.PrettyPrinter(indent=4)
@@ -255,7 +255,7 @@ def generate_safe_seqids(proteins):
     id_mapping = {}
     count = 0
     for seqid in proteins:
-        safe_id = re.sub(r'[^\w]', "", seqid) + '_' + `count`
+        safe_id = re.sub(r'[^\w]', "", seqid) + '_' + repr(count)
         id_mapping[safe_id] = seqid
         proteins[seqid]['safe_seqid'] = safe_id
         count += 1

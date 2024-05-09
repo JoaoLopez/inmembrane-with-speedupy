@@ -44,7 +44,7 @@ def annotate(params, proteins):
         proteins[seqid]['signalp_cleave_position'] = None
 
     signalp4_out = 'signalp.out'
-    cmd = '%(signalp4_bin)s -t %(signalp4_organism)s  %(fasta)s' % \
+    cmd = '%(signalp4_bin)s -org %(signalp4_organism)s -fasta %(fasta)s' % \
           params
     run(cmd, signalp4_out)
 
